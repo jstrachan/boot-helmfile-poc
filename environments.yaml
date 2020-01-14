@@ -2,4 +2,4 @@ environments:
   # The "default" environment is available and used when `helmfile` is run without `--environment NAME`.
   default:
     values:
-    - ./jx-requirements.yml
+    - ./jx-requirements.values.yaml
