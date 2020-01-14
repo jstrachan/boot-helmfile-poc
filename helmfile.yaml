@@ -1,0 +1,45 @@
+repositories:
+  - name: stable
+    url: https://kubernetes-charts.storage.googleapis.com
+  - name: "zloeber"
+    url: "git+https://github.com/zloeber/helm-namespace@chart"
+  
+helmDefaults:
+  atomic: true
+  verify: false
+  wait: true
+  timeout: 1200
+
+bases:
+  - ./environments.yaml
+
+releases:
+- name: namespaces-velero
+  chart: zloeber/namespace
+  namespace: jx
+  values:
+  - namespaces:
+    - velero
+
+- name: namespaces-nginx
+  chart: zloeber/namespace
+  namespace: jx
+  values:
+  - namespaces:
+    - nginx
+
+- name: nginx
+  namespace: nginx
+  chart: stable/nginx-ingress
+  values:
+  - ./apps/nginx/values.yaml.gotmpl
+  needs: 
+  - jx/namespaces-nginx
+
+- name: velero
+  namespace: velero
+  chart: stable/velero
+  values:
+  - ./apps/velero/values.yaml.gotmpl
+  needs: 
+  - jx/namespaces-velero
