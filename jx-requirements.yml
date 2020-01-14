@@ -1,3 +1,7 @@
+# NOTE this file is auto-generated!
+#
+# its created from the canonical `jx-requirements.yml` with the added nested prefix `jxRequirements` so its easy to combine 
+# inside helmfile/helm charts without conflicting with the underlying chart values files
 jxRequirements:
   autoUpdate:
     enabled: false
