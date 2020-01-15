@@ -1,6 +1,0 @@
-apiVersion: v1
-description: Velero Backup Chart
-maintainers:
-- name: Team
-name: velero-backups
-version: "1"

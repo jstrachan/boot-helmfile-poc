@@ -3,23 +3,28 @@ repositories:
     url: https://kubernetes-charts.storage.googleapis.com
   - name: "zloeber"
     url: "git+https://github.com/zloeber/helm-namespace@chart"
-  
+  - name: jenkins-x
+    url: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+
+bases:
+  - environments.yaml
+
 helmDefaults:
   atomic: true
   verify: false
   wait: true
   timeout: 1200
-
-bases:
-  - ./environments.yaml
+  force: true
 
 releases:
-- name: namespaces-velero
-  chart: zloeber/namespace
-  namespace: jx
-  values:
-  - namespaces:
-    - velero
+# jx step verify preinstall -b --namespace jx --disable-verify-helm --disable-verify-packages
+# will already create the namespace and helm 3 will barf if we try and create it below too
+# - name: namespaces-velero
+#   chart: zloeber/namespace
+#   namespace: jx
+#   values:
+#   - namespaces:
+#     - velero
 
 - name: namespaces-nginx
   chart: zloeber/namespace
@@ -41,5 +46,13 @@ releases:
   chart: stable/velero
   values:
   - ./apps/velero/values.yaml.gotmpl
+
+- name: velero-backup
+  namespace: veleros
+  chart: jenkins-x/velero-backup
+  values:
+  - ./apps/velero/values.yaml.gotmpl
   needs: 
-  - jx/namespaces-velero
+  - velero/velero
+
+##########################################

@@ -1,10 +1,9 @@
-velero:
-{{- if and (hasKey .Requirements "velero") (hasKey .Requirements.velero "namespace") }}
-  {{- if .Requirements.velero.namespace }}
-  enabled: true
-  {{- else }}
-  enabled: false
-  {{- end }}
+{{- if and (hasKey .Values.jxRequirements "velero") (hasKey .Values.jxRequirements.velero "namespace") }}
+{{- if .Values.jxRequirements.velero.namespace }}
+enabled: true
 {{- else }}
-  enabled: false
+enabled: false
+{{- end }}
+{{- else }}
+enabled: false
 {{- end }}
