@@ -1,7 +1,3 @@
-# NOTE this file is auto-generated!
-#
-# its created from the canonical `jx-requirements.yml` with the added nested prefix `jxRequirements` so its easy to combine 
-# inside helmfile/helm charts without conflicting with the underlying chart values files
 jxRequirements:
   autoUpdate:
     enabled: false
@@ -61,8 +57,8 @@ jxRequirements:
   secretStorage: local
   storage:
     backup:
-      enabled: false
-      url: ""
+      enabled: true
+      url: gs://velero-backup-jr
     logs:
       enabled: false
       url: ""
@@ -73,7 +69,10 @@ jxRequirements:
       enabled: false
       url: ""
   vault: {}
-  velero: {}
+  velero:
+    namespace: velero
+    schedule: ""
+    ttl: ""
   versionStream:
     ref: v1.0.293
     url: https://github.com/jenkins-x/jenkins-x-versions.git

@@ -5,6 +5,8 @@ repositories:
     url: "git+https://github.com/zloeber/helm-namespace@chart"
   - name: jenkins-x
     url: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
 
 bases:
   - environments.yaml
@@ -56,3 +58,9 @@ releases:
   - velero/velero
 
 ##########################################
+
+# - name: externaldns
+#   namespace: jx
+#   chart: bitnami/external-dns
+#   values:
+#   - ./apps/external-dns/values.yaml.gotmpl
