@@ -34,6 +34,7 @@ kubectl apply -f templates/
 write some installation secrets to a file using the template below, this is a temporary solution
 ```
 vi vi $HOME/.jx/localSecrets/{{ add your cluster name }}/secrets.yaml
+```
 ```yaml
 secrets:
   token: 
