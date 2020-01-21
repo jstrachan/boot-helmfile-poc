@@ -2,7 +2,7 @@ apiVersion: jenkins.io/v1
 kind: Scheduler
 metadata:
   creationTimestamp: null
-  name: env-scheduler
+  name: environment
 spec:
   approve:
     issueRequired: false

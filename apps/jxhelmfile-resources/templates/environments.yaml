@@ -5,24 +5,27 @@
 {{- if eq "bitbucketserver" $jx.cluster.gitKind }}
 {{- $gitUrlPathPrefix := "/scm" -}}
 {{- end }}
+---
 apiVersion: jenkins.io/v1
 kind: Environment
 metadata:
   labels:
-    env: $key
+    env: "{{ $env.key }}"
     team: {{ $env.namespace | default "jx" }}
-  name: dev
+  name: "{{ $env.key }}"
 spec:
-  kind: Development
-  label: Development
-  namespace: {{ $env.namespace | default "jx" }}
 {{- if and (hasKey $env "repo") (hasKey $env "owner") }}
   source:
     ref: "master"
     url: {{ $jx.cluster.gitServer | default "https://github.com" }}{{ $gitUrlPathPrefix }}/{{ $env.owner }}/{{ $env.repo }}.git
 {{- end }}
+
 {{- if eq "dev" $env.key }}
+  kind: Development
+  label: Development
+  namespace: {{ $env.namespace | default "jx" }}
   promotionStrategy: Never
+  webHookEngine: {{ $jx.webhook | default "lighthouse" | quote }}
   teamSettings:
     appsRepository: http://chartmuseum.jenkins-x.io
 {{- if hasKey $jx "buildPackName" }}
@@ -37,21 +40,23 @@ spec:
     defaultScheduler:
       apiVersion: jenkins.io/v1
       kind: Scheduler
-      name: default-scheduler
+      name: default
 {{- if hasKey $jx.cluster "dockerRegistryOrg" }}
-    dockerRegistryOrg: "{{ $jx.cluster.dockerRegistryOrg }}"
+    dockerRegistryOrg: {{ $jx.cluster.dockerRegistryOrg }}
 {{- else }}
-    dockerRegistryOrg: "{{ $jx.cluster.project }}"
+    dockerRegistryOrg: {{ $jx.cluster.project }}
 {{- end }}
-    envOrganisation: "{{ $jx.cluster.environmentGitOwner }}"
+    envOrganisation: {{ $jx.cluster.environmentGitOwner }}
     gitServer: https://github.com
 {{- if $jx.cluster.gitPublic }}
-    gitPublic: "true"
+    gitPublic: true
 {{- end }}
-    helmTemplate: "true"
+    helmTemplate: true
     kubeProvider: "{{ $jx.cluster.provider }}"
+{{- if hasKey $secrets "pipelineUser" }}
     pipelineUsername: "{{ $secrets.pipelineUser.username }}"
     pipelineUserEmail: "{{ $secrets.pipelineUser.email }}"
+{{- end }}
     prowConfig: Scheduler
 {{- if eq $jx.webhook "jenkins" }}
     promotionEngine: Jenkins
@@ -61,10 +66,9 @@ spec:
     promotionEngine: Prow
     prowEngine: Tekton
 {{- end }}
-    quickstartLocations:
-{{- if $jx.quickstartLocations }}
-{{ toYaml $jx.quickstartLocations | indent 6 }}
-{{- end }}
+    versionStreamUrl: "{{ $jx.versionStream.url }}"
+    versionStreamRef: "{{ $jx.versionStream.ref }}"
+    useGitOps: true
 {{- if or $jx.storage.logs.url $jx.storage.reports.url }}
     storageLocations:
 {{- end }}
@@ -76,13 +80,23 @@ spec:
     - bucketUrl: {{ $jx.storage.reports.url }}
       classifier: reports
 {{- end }}
-    versionStreamUrl: "{{ $jx.versionStream.url }}"
-    versionStreamRef: "{{ $jx.versionStream.ref }}"
-    useGitOps: "true"
-  webHookEngine: "{{ $jx.webhook | default "lighthouse" | quote }}"
+{{- if $jx.quickstartLocations }}
+    quickstartLocations:
+{{ toYaml $jx.quickstartLocations | indent 6 }}
+{{- end }}
 {{- else if eq "staging" $env.key }}
-    promotionStrategy: {{ $env.promotionStrategy | default "Auto" }}
+  kind: Permanent
+  label: Staging
+  namespace: {{ $env.namespace | default "jx-staging" }}
+  promotionStrategy: "Auto"
 {{- else }}
-    promotionStrategy: {{ $env.promotionStrategy | default "Manual" }}
+  kind: Permanent
+  label: {{ title $env.key }}
+  promotionStrategy: "Manual"
+{{- if $env.namespace }}
+  namespace: "{{ $env.namespace }}"
+{{- else }}
+  namespace: "jx-{{ $env.key }}"
+{{- end -}}
 {{- end -}}
 {{- end -}}
