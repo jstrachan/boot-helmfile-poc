@@ -1,0 +1,20 @@
+bases:
+  - ../../environments.yaml
+
+helmDefaults:
+  atomic: true
+  verify: false
+  wait: true
+  timeout: 180
+  force: true
+
+releases:
+
+- name: jxhelmfile-resources
+  namespace: jx
+  chart: ../jxhelmfile-resources
+  values:
+  - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
+  - ../../jx-requirements.values.yaml.gotmpl
+  - ../jxhelmfile-resources/values.yaml.gotmpl
+
