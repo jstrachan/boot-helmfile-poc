@@ -30,12 +30,13 @@ releases:
   values:
   - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
 
-- name: jxboot-resources
+- name: jxhelmfile-resources
   namespace: jx
-  chart: jenkins-x/jxboot-resources
+  chart: ../jxhelmfile-resources
   values:
   - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
-  - ../jxboot-resources/values.yaml.gotmpl
+  - ../../jx-requirements.values.yaml.gotmpl
+  - ../jxhelmfile-resources/values.yaml.gotmpl
 
 - name: chartmuseum
   namespace: jx
