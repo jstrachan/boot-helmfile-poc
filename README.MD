@@ -20,6 +20,13 @@ There's lots of info on the [helmfile](https://github.com/roboll/helmfile) githu
 git clone git@github.com:jenkins-x-labs/boot-helmfile-poc.git
 cd boot-helmfile-poc
 ```
+
+* modify the `jx-requirements.yml` to modify the `cluster` fields to point to your cluster: 
+
+* `clusterName`
+* `project`
+* `zone`
+
 auto generate jx requirements and helm values files
 ```
 export JX_HELMFILE=true
