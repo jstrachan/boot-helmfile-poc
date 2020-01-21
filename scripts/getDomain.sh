@@ -1,2 +1,2 @@
 #!/bin/bash
-kubectl -n kube-system get configmap kubeadm-config -o jsonpath={.data.ClusterConfiguration} 2>/dev/null | echo -n replaceme.io
+kubectl get svc nginx-nginx-ingress-controller  -n nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}' 2>/dev/null && echo .nip.io || echo replaceme.io
