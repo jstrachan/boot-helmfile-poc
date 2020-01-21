@@ -1,3 +1,6 @@
+namespace:
+  enabled: false
+
 cluster:
   domain: {{ .Values.jxRequirements.ingress.domain }}
 {{- if hasKey .Values.jxRequirements.ingress "exposer" }}
