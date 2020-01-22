@@ -14,6 +14,13 @@ helmDefaults:
 
 releases:
 
+- name: jxboot-helmfile-resources
+  namespace: jx
+  chart: jenkins-x/jxboot-helmfile-resources
+  values:
+  - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
+  - ../../jx-requirements.values.yaml.gotmpl
+
 - name: nexus
   namespace: jx
   chart: jenkins-x/nexus
@@ -29,13 +36,6 @@ releases:
   chart: jenkins-x/tekton
   values:
   - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
-
-- name: jxboot-resources
-  namespace: jx
-  chart: jenkins-x/jxboot-resources
-  values:
-  - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
-  - ../jxboot-resources/values.yaml.gotmpl
 
 - name: chartmuseum
   namespace: jx
