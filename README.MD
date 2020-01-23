@@ -30,6 +30,7 @@ modify the `jx-requirements.yml` to modify the `cluster` fields to point to your
 * `clusterName`
 * `project`
 * `zone`
+* set `gitops: false` for now while you work on your local checkout
 
 ### setup Secrets
 
@@ -60,7 +61,7 @@ from inside your git clone run boot - making sure you have $JX_SECRETS_DIR set t
 ```  
 export JX_SECRETS_DIR=$HOME/.jx/localSecrets/{{ add your cluster name }}/                               
 
-jx boot
+jx boot -b --no-update-git
 ``` 
 
 using a recent `jx`  version 
