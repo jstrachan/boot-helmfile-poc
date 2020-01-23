@@ -12,6 +12,8 @@ helm plugin install https://github.com/databus23/helm-diff
 ```
 - clean Jenkins X cluster created with `jx create cluster gke --skip-installation`
 
+- `jx` version `2.0.1145` or later
+
 ## running the helmfile installer
 
 There's lots of info on the [helmfile](https://github.com/roboll/helmfile) github repo, take a look to see how things fit together.
@@ -53,9 +55,11 @@ secrets:
 
 ### run boot
 
-from inside your git clone run
+from inside your git clone run boot - making sure you have $JX_SECRETS_DIR set to point to your secrets:
 
-``` 
+```  
+export JX_SECRETS_DIR=$HOME/.jx/localSecrets/{{ add your cluster name }}/                               
+
 jx boot
 ``` 
 
