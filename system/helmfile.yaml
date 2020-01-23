@@ -9,7 +9,7 @@ repositories:
   #   url: https://charts.bitnami.com/bitnami
 
 bases:
-  - ../../environments.yaml
+  - ../environments.yaml
 
 helmDefaults:
   atomic: true
@@ -39,7 +39,7 @@ releases:
   namespace: nginx
   chart: stable/nginx-ingress
   values:
-  - ./values.yaml.gotmpl
+  - nginx-ingress/values.yaml.gotmpl
   needs: 
   - jx/namespaces-nginx
 
