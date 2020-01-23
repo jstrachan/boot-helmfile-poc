@@ -20,6 +20,7 @@ releases:
   values:
   - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
   - ../../jx-requirements.values.yaml.gotmpl
+  - ../jxboot-helmfile-resources/values.yaml.gotmpl
 
 - name: nexus
   namespace: jx
