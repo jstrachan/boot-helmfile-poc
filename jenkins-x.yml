@@ -1,0 +1,138 @@
+buildPack: none
+pipelineConfig:
+  pipelines:
+    pullRequest:
+      pipeline:
+        agent:
+          image: gcr.io/jenkinsxio/builder-go
+        stages:
+        - name: pr-checks
+          options:
+            containerOptions:
+              name: ""
+              resources: {}
+              volumeMounts:
+              - mountPath: /builder/home/.jx/localSecrets/currentCluster
+                name: local-secrets
+                readOnly: true
+            volumes:
+            - name: local-secrets
+              secret:
+                optional: true
+                secretName: local-param-secrets
+          steps:
+          - args:
+            - step
+            - verify
+            - values
+            - --values-file=parameters.yaml
+            - --schema-file=parameters.tmpl.schema.json
+            command: jx
+            dir: /workspace/source/env
+            name: verify-parameters
+          - args:
+            - build
+            command: make
+            dir: /workspace/source/env
+            name: lint-env-helm
+    release:
+      pipeline:
+        agent:
+          image: gcr.io/jenkinsxio/builder-go
+        environment:
+        - name: JX_HELMFILE
+          value: "true"
+        - name: DEPLOY_NAMESPACE
+          value: jx
+        stages:
+        - name: release
+          options:
+            containerOptions:
+              name: ""
+              resources: {}
+              volumeMounts:
+              - mountPath: /builder/home/.jx/localSecrets/currentCluster
+                name: local-secrets
+                readOnly: true
+            volumes:
+            - name: local-secrets
+              secret:
+                optional: true
+                secretName: local-param-secrets
+          steps:
+          - args:
+            - step
+            - git
+            - validate
+            command: jx
+            dir: /workspace/source
+            name: validate-git
+          - args:
+            - step
+            - verify
+            - preinstall
+            - --disable-verify-packages
+            - --provider-values-dir="kubeProviders"
+            command: jx
+            dir: /workspace/source
+            name: verify-preinstall
+          - args:
+            - upgrade
+            - crd
+            command: jx
+            name: install-jx-crds
+          - args:
+            - sync
+            command: helmfile
+            dir: /workspace/source/system
+            name: helmfile-system
+          - args:
+            - step
+            - create
+            - install
+            - values
+            - -b
+            - --ingress-namespace=nginx
+            - --ingress-service=nginx-nginx-ingress-controller
+            command: jx
+            dir: /workspace/source
+            name: verify-ingress
+          - args:
+            - sync
+            - --skip-deps
+            command: helmfile
+            dir: /workspace/source/apps
+            name: helmfile-apps
+          - args:
+            - step
+            - verify
+            - env
+            command: jx
+            dir: /workspace/source
+            name: verify-jenkins-x-environment
+          - args:
+            - step
+            - scheduler
+            - config
+            - apply
+            - --direct=true
+            command: jx
+            dir: /workspace/source
+            name: install-pipelines
+          - args:
+            - update
+            - webhooks
+            - --verbose
+            - --warn-on-fail
+            command: jx
+            dir: /workspace/source/repositories
+            name: update-webhooks
+          - args:
+            - step
+            - verify
+            - install
+            - --pod-wait-time
+            - 30m
+            command: jx
+            dir: /workspace/source
+            name: verify-installation
