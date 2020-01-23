@@ -46,3 +46,7 @@ releases:
   values:
   - chartmuseum/values.yaml.gotmpl
   - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
+
+- name: repositories
+  namespace: jx
+  chart: ../repositories
