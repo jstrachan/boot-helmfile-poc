@@ -16,7 +16,7 @@ cluster:
   zone: europe-north1-a
 environments:
 - ingress:
-    domain: ""
+    domain: 35.233.2.14.nip.io
     externalDNS: false
     namespaceSubDomain: ""
     tls:
