@@ -43,14 +43,15 @@ write some installation secrets to a file using the template below, this is a te
 vi vi $HOME/.jx/localSecrets/{{ add your cluster name }}/secrets.yaml
 ```
 ```yaml
-secrets:
-  token: 
-  password: 
-  hmacToken: 
+secrets:     
+  adminUser:
+    username: "admin"
+    password: "" 
+  hmacToken: "" 
   pipelineUser:
-    username: 
-    email: 
-    token: 
+    username: ""  
+    email: "" 
+    token: "" 
 ```
 ```
 export JX_SECRETS_DIR=$HOME/.jx/localSecrets/{{ add your cluster name }}/
