@@ -14,3 +14,16 @@ replicaCount: 2
 
 image:
   repository: gcr.io/jenkinsxio/lighthouse
+
+vault:
+{{- if eq .Values.jxRequirements.secretStorage "vault" }}
+  enabled: true
+{{- else }}
+  enabled: false
+{{- end }}
+
+clusterName: "{{ .Values.jxRequirements.cluster.clusterName }}"
+
+user: "{{ .Values.secrets.pipelineUser.username }}"
+
+oauthToken: "{{ .Values.secrets.pipelineUser.token }}"

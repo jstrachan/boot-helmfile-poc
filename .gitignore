@@ -1,1 +1,5 @@
+# generated files
 jx-requirements.values.yaml.gotmpl
+
+# IDE files
+.idea

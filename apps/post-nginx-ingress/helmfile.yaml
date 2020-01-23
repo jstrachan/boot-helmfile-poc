@@ -30,12 +30,14 @@ releases:
   chart: jenkins-x/lighthouse
   values:
   - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
+  - ../lighthouse/values.yaml.gotmpl
 
 - name: tekton
   namespace: jx
   chart: jenkins-x/tekton
   values:
   - {{ requiredEnv "JX_SECRETS_DIR" }}secrets.yaml
+  - ../tekton/values.yaml.gotmpl
 
 - name: chartmuseum
   namespace: jx
