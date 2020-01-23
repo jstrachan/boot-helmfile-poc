@@ -6,5 +6,5 @@ helmDefaults:
   force: true
 
 helmfiles:
-  - apps/nginx-ingress/helmfile.yaml
-  - apps/post-nginx-ingress/helmfile.yaml
+  - system/helmfile.yaml
+  - apps/helmfile.yaml
