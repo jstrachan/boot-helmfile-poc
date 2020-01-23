@@ -3,7 +3,7 @@ autoUpdate:
   schedule: ""
 bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
-  clusterName: robincomet
+  clusterName: ""
   environmentGitOwner: cb-kubecd
   environmentGitPublic: true
   gitKind: github
@@ -75,4 +75,4 @@ velero:
 versionStream:
   ref: v1.0.293
   url: https://github.com/jenkins-x/jenkins-x-versions.git
-webhook: prow
+webhook: lighthouse
