@@ -9,6 +9,8 @@ pipelineConfig:
         - name: pr-checks
           options:
             containerOptions:
+              name: ""
+              resources: {}
               volumeMounts:
               - mountPath: /builder/home/.jx/localSecrets/currentCluster
                 name: local-secrets
@@ -38,12 +40,16 @@ pipelineConfig:
         agent:
           image: gcr.io/jenkinsxio/builder-go
         environment:
+        - name: JX_HELMFILE
+          value: "true"
         - name: DEPLOY_NAMESPACE
           value: jx
         stages:
         - name: release
           options:
             containerOptions:
+              name: ""
+              resources: {}
               volumeMounts:
               - mountPath: /builder/home/.jx/localSecrets/currentCluster
                 name: local-secrets
@@ -59,7 +65,7 @@ pipelineConfig:
             - git
             - validate
             command: jx
-            dir: /workspace/source/env
+            dir: /workspace/source
             name: validate-git
           - args:
             - step
@@ -89,22 +95,14 @@ pipelineConfig:
             - --ingress-namespace=nginx
             - --ingress-service=nginx-nginx-ingress-controller
             command: jx
-            dir: /workspace/source/env
+            dir: /workspace/source
             name: verify-ingress
           - args:
             - sync
+            - --skip-deps
             command: helmfile
             dir: /workspace/source/apps
             name: helmfile-apps
-#          - args:
-#            - step
-#            - boot
-#            - vault
-#            - --provider-values-dir
-#            - ../../kubeProviders
-#            command: jx
-#            dir: /workspace/source/systems/vault
-#            name: install-vault
           - args:
             - step
             - verify
@@ -119,7 +117,7 @@ pipelineConfig:
             - apply
             - --direct=true
             command: jx
-            dir: /workspace/source/prowConfig
+            dir: /workspace/source
             name: install-pipelines
           - args:
             - update
@@ -136,5 +134,5 @@ pipelineConfig:
             - --pod-wait-time
             - 30m
             command: jx
-            dir: /workspace/source/env
+            dir: /workspace/source
             name: verify-installation
