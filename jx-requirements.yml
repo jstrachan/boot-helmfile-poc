@@ -4,7 +4,7 @@ autoUpdate:
 bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
   clusterName: ""
-  environmentGitOwner: cb-kubecd
+  clusterName: robincomet
   environmentGitPublic: true
   gitKind: github
   gitName: github
