@@ -16,7 +16,7 @@ helmDefaults:
   verify: false
   wait: true
   timeout: 180
-  force: true
+  force: false
 
 releases:
 # jx step verify preinstall -b --namespace jx --disable-verify-helm --disable-verify-packages

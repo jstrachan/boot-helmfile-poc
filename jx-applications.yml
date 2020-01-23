@@ -1,0 +1,14 @@
+defaultNamespace: jx
+applications:
+- name: jxboot-helmfile-resources
+  repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+- name: nexus
+  repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+- name: lighthouse
+  repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+- name: tekton
+  repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+- name: chartmuseum
+  repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+- name: repositories
+  repository: ".."

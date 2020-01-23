@@ -4,7 +4,10 @@ autoUpdate:
 bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config.git
 cluster:
   clusterName: ""
-  clusterName: robincomet
+  clusterName: palmlace
+  devEnvApprovers:
+  - rawlingsj
+  environmentGitOwner: cb-kubecd
   environmentGitPublic: true
   gitKind: github
   gitName: github
@@ -13,17 +16,18 @@ cluster:
   namespace: jx
   project: jx-development
   provider: gke
-  zone: europe-north1-a
+  zone: europe-west1-b
 environments:
 - ingress:
     domain: 35.233.2.14.nip.io
     externalDNS: false
-    namespaceSubDomain: ""
+    namespaceSubDomain: -jx.
     tls:
       email: ""
       enabled: false
       production: false
   key: dev
+  repository: environment-palmlace-dev
 - ingress:
     domain: ""
     externalDNS: false
@@ -33,6 +37,7 @@ environments:
       enabled: false
       production: false
   key: staging
+  repository: environment-palmlace-staging
 - ingress:
     domain: ""
     externalDNS: false
@@ -42,9 +47,10 @@ environments:
       enabled: false
       production: false
   key: production
+  repository: environment-palmlace-production
 gitops: true
 ingress:
-  domain: ""
+  domain: 35.233.2.14.nip.io
   externalDNS: false
   namespaceSubDomain: -jx.
   tls:
