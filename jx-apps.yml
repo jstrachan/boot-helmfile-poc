@@ -1,14 +1,37 @@
-defaultNamespace: jx
 applications:
 - name: jxboot-helmfile-resources
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+  namespace: ""
+  version: ""
+  description: ""
 - name: nexus
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+  namespace: ""
+  version: ""
+  description: ""
 - name: lighthouse
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+  namespace: ""
+  version: ""
+  description: ""
 - name: tekton
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+  namespace: ""
+  version: ""
+  description: ""
 - name: chartmuseum
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
+  namespace: ""
+  version: ""
+  description: ""
 - name: repositories
-  repository: ".."
+  repository: ..
+  namespace: ""
+  version: ""
+  description: ""
+- name: flagger
+  repository: https://flagger.app
+  namespace: ""
+  version: 0.22.0
+  description: ""
+defaultnamespace: ""
