@@ -1,0 +1,27 @@
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-credential-initializer-vkh6z[0m
+{"level":"warn","ts":1580279498.1077158,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1580279498.1088252,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-working-dir-initializer-tgz4d[0m
+{"level":"warn","ts":1580279499.1846905,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1580279499.1871548,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-git-source-jstrachan-boot-helmfile-poc-mas-8p2nx-d8m64[0m
+{"level":"warn","ts":1580279507.174716,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1580279508.266988,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*********/boot-helmfile-poc.git @ v0.0.1 in path /workspace/source"}
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:74bede2ad7b9106c6475376c3f701fbf1fc89a5c
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-validate-git[0m
+Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-verify-preinstall[0m
+error: Validation failures in YAML file **-requirements.yml:
+(root): Additional property helmfile is not allowed
+[31m
+Pipeline failed on stage 'release' : container 'step-verify-preinstall'. The execution of the pipeline has stopped.[0m
