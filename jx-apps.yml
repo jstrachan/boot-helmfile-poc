@@ -1,4 +1,3 @@
-defaultNamespace: jx
 applications:
 - name: jxboot-helmfile-resources
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
@@ -11,4 +10,6 @@ applications:
 - name: chartmuseum
   repository: https://storage.googleapis.com/chartmuseum.jenkins-x.io
 - name: repositories
-  repository: ".."
+  repository: ..
+- name: jetstack/cert-manager
+defaultNamespace: jx
