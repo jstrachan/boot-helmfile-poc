@@ -100,7 +100,7 @@ pipelineConfig:
             dir: /workspace/source
             name: verify-ingress
           - args:
-            - exp
+            - step
             - create
             - helmfile
             - --values
