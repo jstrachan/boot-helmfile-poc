@@ -44,6 +44,8 @@ pipelineConfig:
           value: "true"
         - name: DEPLOY_NAMESPACE
           value: jx
+        - name: JX_HELM3
+          value: "true"
         stages:
         - name: release
           options:
@@ -98,8 +100,20 @@ pipelineConfig:
             dir: /workspace/source
             name: verify-ingress
           - args:
+            - exp
+            - create
+            - helmfile
+            - --values
+            - $JX_SECRETS_DIR/secrets.yaml
+            - --values
+            - ../jx-requirements.values.yaml.gotmpl
+            - --outputDir
+            - ./apps
+            command: jx
+            dir: /workspace/source
+            name: generate-helmfile
+          - args:
             - sync
-            - --skip-deps
             command: helmfile
             dir: /workspace/source/apps
             name: helmfile-apps
