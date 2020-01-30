@@ -1,27 +1,58 @@
 
-Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-credential-initializer-vkh6z[0m
-{"level":"warn","ts":1580279498.1077158,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1580279498.1088252,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-credential-initializer-bbgm9[0m
+{"level":"warn","ts":1580379810.4765718,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1580379810.477408,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
 
-Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-working-dir-initializer-tgz4d[0m
-{"level":"warn","ts":1580279499.1846905,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
-{"level":"info","ts":1580279499.1871548,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-working-dir-initializer-ndfqf[0m
+{"level":"warn","ts":1580379811.3524835,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1580379811.35529,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
 
-Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-place-tools[0m
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-place-tools[0m
 
-Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-git-source-jstrachan-boot-helmfile-poc-mas-8p2nx-d8m64[0m
-{"level":"warn","ts":1580279507.174716,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
-{"level":"info","ts":1580279508.266988,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*********/boot-helmfile-poc.git @ v0.0.1 in path /workspace/source"}
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-git-source-jstrachan-boot-helmfile-poc-mas-r87km-vfxv7[0m
+{"level":"warn","ts":1580379820.6626427,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1580379821.7500634,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*********/boot-helmfile-poc.git @ v0.0.3 in path /workspace/source"}
 
-Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-git-merge[0m
-Using SHAs from PULL_REFS=master:74bede2ad7b9106c6475376c3f701fbf1fc89a5c
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:a9988104ef7201d898c285c3c536544ff44ea81f
 WARNING: no SHAs to merge, falling back to initial cloned commit
 
-Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-validate-git[0m
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-validate-git[0m
 Git configured for user: jenkins-x-bot and email jenkins-x@googlegroups.com
 
-Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-8p2nx-1[0m stage [32mrelease[0m and container [32mstep-verify-preinstall[0m
-error: Validation failures in YAML file **-requirements.yml:
-(root): Additional property helmfile is not allowed
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-verify-preinstall[0m
+no need to reconnect to cluster
+writing the following to the OWNERS file for the development environment repository:
+approvers:
+- *********
+reviewers:
+- *********
+WARNING: TLS is not enabled so your webhooks will be called using HTTP. This means your webhook secret will be sent to your cluster in the clear. See https://jenkins-x.io/docs/getting-started/setup/boot/#ingress for more information
+Verifying the kubernetes cluster before we try to boot Jenkins X in namespace: **
+Trying to lazily create any missing resources to get the current cluster ready to boot Jenkins X
+Verifying Ingress...
+Clearing the domain 35.195.50.195.nip.io as when using auto-DNS domains we need to regenerate to ensure its always accurate in case the cluster or ingress service is recreated
+
+Using namespace '**' from context named '' on server ''.
+
+Verifying Storage...
+WARNING: Your requirements have not enabled cloud storage for logs - we recommend enabling this for kubernetes provider gke
+WARNING: Your requirements have not enabled cloud storage for reports - we recommend enabling this for kubernetes provider gke
+WARNING: Your requirements have not enabled cloud storage for repository - we recommend enabling this for kubernetes provider gke
+WARNING: Your requirements have not enabled cloud storage for backup - we recommend enabling this for kubernetes provider gke
+Storage configuration looks good
+
+Validating Kaniko secret in namespace **
+
+verified there is a ConfigMap config in namespace **
+verified there is a ConfigMap plugins in namespace **
+Cluster looks good, you are ready to '** boot' now!
+
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-install-jx-crds[0m
+Jenkins X CRDs upgraded with success
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-mas-r87km-1[0m stage [32mrelease[0m and container [32mstep-helmfile-system[0m
+/bin/sh: helmfile: command not found
 [31m
-Pipeline failed on stage 'release' : container 'step-verify-preinstall'. The execution of the pipeline has stopped.[0m
+Pipeline failed on stage 'release' : container 'step-helmfile-system'. The execution of the pipeline has stopped.[0m
