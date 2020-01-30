@@ -1,0 +1,35 @@
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-pr-68dd6-1[0m stage [32mpr-checks[0m and container [32mstep-credential-initializer-zgjl8[0m
+{"level":"warn","ts":1580384530.2628944,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1580384530.2635384,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-pr-68dd6-1[0m stage [32mpr-checks[0m and container [32mstep-working-dir-initializer-pvrjt[0m
+{"level":"warn","ts":1580384531.5862849,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1580384531.5884173,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-pr-68dd6-1[0m stage [32mpr-checks[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-pr-68dd6-1[0m stage [32mpr-checks[0m and container [32mstep-git-source-jstrachan-boot-helmfile-poc-pr-68dd6-lkrkk[0m
+{"level":"warn","ts":1580384536.7612975,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1580384537.842469,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*********/boot-helmfile-poc.git @ master in path /workspace/source"}
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-pr-68dd6-1[0m stage [32mpr-checks[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:a9988104ef7201d898c285c3c536544ff44ea81f,7:bb92bbbdc35e86e424affb173257a8128653ac49
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git fetch origin --unshallow bb92bbbdc35e86e424affb173257a8128653ac49: a9988104ef7201d898c285c3c536544ff44ea81f:
+DEBUG: ran git fetch --unshallow origin bb92bbbdc35e86e424affb173257a8128653ac49: a9988104ef7201d898c285c3c536544ff44ea81f: in 
+DEBUG: JX_LOG_LEVEL=error LC_ALL=C git branch
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git checkout master
+DEBUG: ran git checkout master in 
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git reset --hard a9988104ef7201d898c285c3c536544ff44ea81f
+DEBUG: ran git reset --hard a9988104ef7201d898c285c3c536544ff44ea81f in 
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git clean -fd .
+DEBUG: ran clean --force -d . in 
+DEBUG: JX_LOG_LEVEL=error LC_ALL=C git merge bb92bbbdc35e86e424affb173257a8128653ac49
+DEBUG: ran git merge bb92bbbdc35e86e424affb173257a8128653ac49 in 
+DEBUG: LC_ALL=C JX_LOG_LEVEL=error git log --format=%H%x1f%an%x1f%ae%x1f%cn%x1f%ce%x1f%s%n%b%x1e a9988104ef7201d898c285c3c536544ff44ea81f..HEAD
+Merged SHA bb92bbbdc35e86e424affb173257a8128653ac49 with commit message 'Add app flagger 0.22.0' into base branch master
+
+Showing logs for build [32mjstrachan-boot-helmfile-poc-pr-68dd6-1[0m stage [32mpr-checks[0m and container [32mstep-verify-parameters[0m
+/bin/sh: line 0: cd: /workspace/source/env: No such file or directory
+[31m
+Pipeline failed on stage 'pr-checks' : container 'step-verify-parameters'. The execution of the pipeline has stopped.[0m
