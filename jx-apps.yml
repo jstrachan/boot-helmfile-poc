@@ -1,4 +1,3 @@
-defaultNamespace: jx
 apps:
 - name: stable/nginx-ingressnginx-ingress
 - name: jenkins-x/jxboot-helmfile-resources
@@ -7,4 +6,6 @@ apps:
 - name: jenkins-x/tekton
 - name: jenkins-x/chartmuseum
 - name: repositories
-  repository: ".."
+  repository: ..
+- name: flagger/flagger
+defaultNamespace: jx
